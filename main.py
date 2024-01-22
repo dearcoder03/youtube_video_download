@@ -20,7 +20,7 @@ def sanitize_filename(filename):
 
 def download_video(stream, title, suffix):
     sanitized_title = sanitize_filename(title)
-    download_path = os.path.join(os.path.expanduser("~"), "Downloads", f"{sanitized_title}_{suffix}.mp4")
+    download_path = os.path.join("/tmp", f"{sanitized_title}_{suffix}.mp4")
     stream.download(output_path=download_path)
     st.success(f"Downloaded :  Check Downloads in your Device")
 
@@ -28,7 +28,7 @@ def download_video(stream, title, suffix):
 def download_thumbnail(url, title):
     sanitized_title = sanitize_filename(title)
     response = requests.get(url)
-    thumbnail_path = os.path.join(os.path.expanduser("~"), "Downloads", f"{sanitized_title}_thumbnail.jpg")
+    thumbnail_path = os.path.join("/tmp", f"{sanitized_title}_thumbnail.jpg")
     with open(thumbnail_path, 'wb') as file:
         file.write(response.content)
     st.success(f"Thumbnail downloaded : Check Downloads in your Device")
